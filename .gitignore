@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.sqlite
+*.db
+checkpoints.sqlite
+收件箱/
+outbox/
+workspace/
+evidence/
+.env
