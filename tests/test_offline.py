@@ -71,8 +71,9 @@ def test_validate_forces_high_risk_on_send() -> None:
 def test_summary_by_assignee() -> None:
     out = real_tools.task_summary_by_assignee("unfinished")
     assert "共 4 条" in out
-    assert "小组B·开发" in out and "| 3 |" in out
-    assert "小组A·研究" in out and "| 2 |" in out
+    assert "小组A·研究" in out and "小组B·开发" in out
+    assert "| g1 | 小组A·研究 | 小组A | 2 | 0 | 0 | 2 |" in out
+    assert "| g2 | 小组B·开发 | 小组B | 0 | 2 | 0 | 2 |" in out
 
 
 def test_query_tasks_returns_rows() -> None:
