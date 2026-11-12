@@ -77,3 +77,6 @@ export AGENT_DB=/path/to/agent_im.db   # 需含 tasks / members 表
 2. 单机 SQLite checkpoint，不支持多实例。
 3. Telegram 需自备 bot token；无网络时自动回退本地收件箱。
 4. Windows 上 `ormsgpack>=1.12` / `xxhash 4.x` 的 wheel 可能 DLL 加载失败，`requirements.txt` 已固定可用版本。
+
+
+> CI：GitHub Actions（ruff + pytest）；依赖更新：Dependabot；版本：Release `v0.1.0` 起。
