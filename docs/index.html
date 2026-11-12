@@ -1,49 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AgentOS P1 · 真实链路</title>
-<style>
-  :root{--ink:#0f172a;--muted:#5b6472;--line:#e2e8f0;--blue:#2563eb;--bg:#f8fafc}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Segoe UI","Microsoft YaHei",system-ui,sans-serif}
-  main{max-width:900px;margin:0 auto;padding:64px 24px 80px}
-  h1{font-size:34px;margin:0 0 10px}
-  .sub{color:var(--muted);margin:0 0 34px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
-  .card h3{margin:0 0 6px;font-size:16px}
-  .card p{margin:0;color:var(--muted);font-size:14px}
-  code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:13px}
-  ol{padding-left:20px}
-  li{margin:6px 0}
-  footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
-</style>
-</head>
-<body>
-<main>
-  <h1>AgentOS P1 · 真实链路</h1>
-  <p class="sub">一句话任务 → LLM 规划 → 只读真实库 → 自动报告 → 人工审批 → 多通道投递（失败自动回退）</p>
-
-  <div class="grid">
-    <div class="card"><h3>可中断</h3><p>高风险步骤 <code>interrupt()</code> 停下等人 approve / reject。</p></div>
-    <div class="card"><h3>可恢复</h3><p>SQLite checkpoint 持久化，进程退出后新进程 resume，不重跑已完成步骤。</p></div>
-    <div class="card"><h3>只读安全</h3><p><code>mode=ro</code> + <code>query_only</code>，固定 SQL 参数化，工具层无写库能力。</p></div>
-    <div class="card"><h3>零丢件</h3><p>投递 auto：Telegram → 本地 IM → 本地收件箱，失败自动回退并留审计。</p></div>
-  </div>
-
-  <h2 style="font-size:20px;margin-top:40px">快速开始</h2>
-  <ol>
-    <li><code>powershell -File setup.ps1</code> 建环境（uv + 固定版本 + 冒烟测试）</li>
-    <li><code>python poc.py demo</code> 跑 5 个场景（中断 / 恢复 / 只读 / 拒绝 / 状态）</li>
-    <li><code>python poc.py run --task "查一下本周未完成的 tasks，按负责人汇总后发给我"</code></li>
-  </ol>
-
-  <h2 style="font-size:20px;margin-top:32px">用到的开源项目</h2>
-  <p style="color:var(--muted)">LangGraph（MIT）· pytest（MIT）· ruff（MIT）· actions/checkout（MIT）· actions/setup-python（MIT）</p>
-
-  <footer>本页由 GitHub Pages 托管；项目为私有仓库，代码访问需授权。2026-11-12</footer>
-</main>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentOS P1 · 真实链路</title><style>body{font:16px/1.75 "Segoe UI","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:56px 22px;color:#111827;background:#f8fafc}
+h1{font-size:30px}h2{font-size:20px;margin-top:32px;border-left:4px solid #2563eb;padding-left:10px}code{background:#eef2f7;padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left}th{background:#f1f5f9}.muted{color:#64748b}</style></head><body>
+<h1>AgentOS P1 · 真实链路</h1><p class="muted">一句话任务 → LLM 规划 → 只读库 → 自动报告 → 人工审批 → 多通道投递（失败自动回退）｜更新：2026-11-12</p>
+<h2>它解决什么</h2><ul><li>可中断：高风险动作 <code>interrupt()</code> 等人工 approve/reject</li><li>可恢复：SQLite checkpoint，进程重启后继续</li>
+<li>只读安全：<code>mode=ro</code> + <code>query_only</code>，固定 SQL 参数化，无写库工具</li><li>零丢件：投递失败自动回退本地收件箱并审计</li></ul>
+<h2>质量门禁</h2><table><tr><th>能力</th><th>状态</th></tr><tr><td>CI（ruff + pytest）</td><td>GitHub Actions</td></tr>
+<tr><td>CodeQL</td><td>0 告警</td></tr><tr><td>Dependabot</td><td>pip + Actions 每周更新</td></tr><tr><td>分支保护</td><td>main 需 CI 通过</td></tr><tr><td>Secret scanning</td><td>已开启 + push protection</td></tr></table>
+<h2>开源依赖</h2><p>LangGraph（MIT）· pytest（MIT）· ruff（MIT）· actions/checkout（MIT）· actions/setup-python（MIT）</p>
+<p class="muted">GitHub Pages 托管 · MIT License · 仓库已公开</p></body></html>
