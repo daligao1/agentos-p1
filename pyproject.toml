@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentos-p1"
+version = "0.1.0"
+description = "AgentOS P1 真实链路：LangGraph 编排 + DeepSeek 规划 + 只读库 + 人工审批 + 多通道投递"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = [".venv", "outbox", "收件箱", "workspace", "evidence", "_*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
